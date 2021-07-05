@@ -32,6 +32,7 @@
   border: 1px solid rgb(207, 204, 204);
   background-color: rgba(248, 246, 246, 0.938);
   border-radius: 2px;
+  font-family: 'Manrope', sans-serif;
 }
 
 .TodoList .containerBtn button:hover {
