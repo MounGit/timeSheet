@@ -14,6 +14,7 @@ nav a{
     color: white;
     margin-right:15px;
     text-decoration: none;
+    font-family: 'Manrope', sans-serif;
 }
 
 nav a:hover {
