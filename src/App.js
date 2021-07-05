@@ -1,37 +1,15 @@
-import React from 'react';
-import  'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import Nav from './components/nav';
+import Section1 from './components/section-1';
+
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 function App() {
   return (
     <div className="App">
-      <nav>
-
-
-
-        <div>
-          <a href=""></a>
-          <a href=""></a>
-          <a href=""></a>
-          <a href=""></a>
-          <a href=""></a>
-          <a href=""></a>
-          <a href=""></a>
-          <a href=""></a>
-        </div>
-
-
-
-        <div>
-        <a href=""></a>
-        <a href=""></a>
-        <a href=""></a>
-        </div>
-
-
-
-
-
-      </nav>
+      <Nav />
+      <Section1 />
     </div>
   );
 }
