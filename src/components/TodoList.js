@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./TodoList.css";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import FormTask from "./FormTask";
 export default class TodoList extends Component {
   tabWeek = ["M", "T", "W", "Th", "F", "S", "Su"];
   time;
@@ -27,6 +28,7 @@ export default class TodoList extends Component {
             })}
           </div>
         </div>
+        <FormTask />
       </div>
     );
   }

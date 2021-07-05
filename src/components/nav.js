@@ -16,13 +16,8 @@ function Nav() {
           <a href="#">
             <FontAwesomeIcon icon={faHome} />
           </a>
-          <a href="#">Time</a>
-          <a href="#">Expenses</a>
-          <a href="#">Projects</a>
-          <a href="#">Team</a>
-          <a href="#">Reports</a>
-          <a href="#">Invoices</a>
-          <a href="#">Manage</a>
+          <a href="#">Home</a>
+          <a href="#">Timesheet</a>
         </div>
 
         {dataIsOk ? (
