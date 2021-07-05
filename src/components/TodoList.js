@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./TodoList.css";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default class TodoList extends Component {
   tabWeek = ["M", "T", "W", "Th", "F", "S", "Su"];
   time;
@@ -7,7 +9,9 @@ export default class TodoList extends Component {
     return (
       <div className="TodoList">
         <div className="newTask">
-          <button>+</button>
+          <button>
+            <FontAwesomeIcon className="icon" icon={faPlus} />
+          </button>
           <p>New Entry</p>
         </div>
 

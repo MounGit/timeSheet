@@ -1,0 +1,52 @@
+nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f47918;
+  height: 50px;
+}
+
+nav div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+}
+
+nav a {
+  color: white;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #00a0c6;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+form {
+  /* border: 2px solid black; */
+  width: 40%;
+}
+nav .form-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding-right: 2%;
+}
+
+nav .form-line button {
+  background-color: #f47918;
+  color: white;
+  border: 1px solid white;
+}
+
+nav .nameConnexion {
+  display: flex;
+  align-items: center;
+  color: white;
+  height: 100%;
+  font-size: 1.5vw;
+}

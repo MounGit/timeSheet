@@ -11,8 +11,13 @@
 .TodoList .newTask button {
   background-color: rgb(67, 178, 52);
   color: white;
-  /* font-size: 2em; */
-  padding: 25%;
+  border: none;
+  border-radius: 5px;
+  padding: 15%;
+}
+
+.TodoList .icon {
+  font-size: 2.3em;
 }
 
 .TodoList .containerBtn {
