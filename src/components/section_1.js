@@ -10,7 +10,6 @@ import { Component } from 'react';
 export default class section_1 extends Component {
   constructor(props){
     super(props)
-    this.state 
    this.refDateSpan = React.createRef();
    this.maDate = Date.now();
    this.DayNumber = new Date().getDay();
