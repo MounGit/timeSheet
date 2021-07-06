@@ -3,6 +3,7 @@ import "./TodoList.css";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default class TodoList extends Component {
+  tabDayofWeek = {}
   tabWeek = ["M", "T", "W", "Th", "F", "S", "Su"];
   time;
   render() {
