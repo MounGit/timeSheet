@@ -9,7 +9,7 @@
   width: 100vw;
   background-color: rgb(0, 0, 0, 0.2);
   z-index: 3;
-  transition: 1s;
+  transition: 0.5s;
 }
 .FormTask .container_form {
   width: 40%;
@@ -88,6 +88,8 @@
   margin-right: 3%;
 }
 .content_FormTask .container_timer input {
+  padding-left: 5%;
+  outline: none;
   width: 20%;
 }
 

@@ -29,8 +29,9 @@ function Nav() {
                 ref={inputTextRef}
                 placeholder="Nom utilisateur"
                 type="text"
+                required
               />{" "}
-              <input type="password" />{" "}
+              <input type="password" required />{" "}
               <button
                 onClick={() => {
                   setData(
