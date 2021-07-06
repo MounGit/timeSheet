@@ -1,15 +1,22 @@
 import React from "react";
 import Nav from "./components/nav";
-import Section1 from "./components/section-1";
-import "bootstrap/dist/css/bootstrap.min.css";
 import TodoList from "./components/TodoList";
+import Section_1 from "./components/section_1";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Home from "./pages/Home";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <Nav />
-      <Section1 />
-      <TodoList />
+      <Router>
+        <Nav />
+
+        <Route path="/Home" exact component={Home} />
+        <Route path="/TodoList" exact component={TodoList} />
+      </Router>
+
+      {/* <Section_1 /> */}
     </div>
   );
 }

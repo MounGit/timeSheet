@@ -1,9 +1,8 @@
 import React, { useRef, useState } from "react";
-
 import "./manav.css";
-// mes import pour fontawesome
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 function Nav() {
   const inputTextRef = useRef();
@@ -13,11 +12,11 @@ function Nav() {
     <div>
       <nav id="maNav">
         <div>
-          <a href="#">
+          <a href="/Home">
             <FontAwesomeIcon icon={faHome} />
+            Home
           </a>
-          <a href="#">Home</a>
-          <a href="#">Timesheet</a>
+          <a href="/TodoList">Timesheet</a>
         </div>
 
         {dataIsOk ? (
