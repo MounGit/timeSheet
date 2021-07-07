@@ -111,7 +111,8 @@ export default class Task extends Component {
             <span ref={this.spanRef}>Stop</span>
           </button>{" "}
           <button
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               let tabTextarea = Array.from(
                 this.props.stateTodo.tabTaskActive[
                   this.props.IndexOfTask
@@ -130,7 +131,9 @@ export default class Task extends Component {
                   this.props.IndexOfTask
                 ].description;
               inputNode.value = this.spanTimerRef.current.textContent;
-              console.log(tabTextarea, inputNode);
+              console.log(this.props.stateTodo.tabTaskActive[
+                this.props.IndexOfTask
+              ]);
               this.props.stateTodo.tabTaskActive[
                 this.props.IndexOfTask
               ].refTask.setAttribute("style", "visibility:visible");
