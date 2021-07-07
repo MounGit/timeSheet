@@ -17,6 +17,7 @@ export default class FormTask extends Component {
     this.startTimer = this.startTimer.bind(this);
     this.countSeconds = this.countSeconds.bind(this);
     this.clearTextarea = this.clearTextarea.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
   }
   countSeconds() {
     let secondsCount = this.state.seconds + 1;
@@ -43,6 +44,14 @@ export default class FormTask extends Component {
   componentDidMount() {
     let seconds = this.secondsToTime(this.state.timer.seconds);
     this.setState({ timer: seconds });
+
+  }
+
+  componentWillUnmount(){
+                        this.FormRef.current.setAttribute(
+                      "style",
+                      "visibility:visible"
+                    );
   }
   startTimer() {
     this.intervalCode = setInterval(this.countSeconds, 1000);
@@ -52,19 +61,29 @@ export default class FormTask extends Component {
   //     clearInterval(this.intervalCode);
   //   }
   deleteTask() {
+    console.log("Dans ma fonction");
     let indexOfTabActiveDay = this.props.stateOfTodo.tabWeek.indexOf(
       this.props.stateOfTodo.activeTask
     );
-    let tabActiveDay = this.props.stateOfTodo[indexOfTabActiveDay];
-    for (let i in this.props.stateOfTodo[indexOfTabActiveDay])
-      if (tabActiveDay[i].refTask === this.FormRef.current) {
-        tabActiveDay.splice(i, 1);
-        let newTabTask = this.props.stateOfTodo.tabTask;
-        newTabTask[indexOfTabActiveDay] = tabActiveDay;
-        this.props.setStateTodo({
-          tabTask: newTabTask,
-        });
-      }
+    let tabActiveDay = this.props.stateOfTodo.tabTaskActive;
+    // console.log(this.props.stateOfTodo);
+    // this.FormRef.current.remove();
+    // for (let i in tabActiveDay){
+    //   console.log("Dans mon for");
+    //   if (tabActiveDay[i].refTask === this.FormRef.current) {
+    //     console.log(`dans ma condition ${tabActiveDay[i].refTask}`  )
+
+    //     tabActiveDay.splice(i, 1);
+    //     let newTabTask = this.props.stateOfTodo.tabTask;
+
+    //     newTabTask[indexOfTabActiveDay] = tabActiveDay;
+    //     console.log(newTabTask[indexOfTabActiveDay]);
+    //     this.props.setStateTodo({
+    //       tabTask: newTabTask, tabTaskActive: tabActiveDay, 
+    //       refForm: this.props.stateOfTodo.refForm
+    //     });
+    //   }
+    // }
   }
   clearTextarea() {
     this.FormtextAreaRef1.current.value = "";
@@ -167,7 +186,7 @@ export default class FormTask extends Component {
                 {" "}
                 <button
                   onClick={(e) => {
-                    // e.preventDefault();
+                    e.preventDefault();
                     // this.startTimer();
                     this.FormRef.current.setAttribute(
                       "style",
@@ -206,7 +225,9 @@ export default class FormTask extends Component {
                   Cancel
                 </button>
               </div>{" "}
-              <button onClick={() => this.deleteTask()}>Delete</button>
+              <button onClick={(e) => {
+                e.preventDefault();
+                this.deleteTask()}}>Delete</button>
             </div>
             {/* {console.log(this.props.stateOfTodo.tabTask)} */}
           </div>
