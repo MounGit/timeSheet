@@ -1,7 +1,7 @@
 body{
-    background-image: url(../img/profile-bg.jpg);
-    background-size:contain;
-    height: 1000px;
+    background-image: url(../img/bois.jpg);
+    background-size:cover;
+    height: 1200px;
 }
 
 #homeDiv{
@@ -55,18 +55,11 @@ body{
 #citation{
     background-color: rgba(199, 209, 204, 0.404);
     border-radius: 5rem/5rem;
-    padding: 4%;
-    
+    padding: 4%;  
 }
-#auteur{
-    margin-left: 25%;
-}
-
 #check{
     text-decoration: none; 
 }
-
-
 
 #light{
     display: flex;
