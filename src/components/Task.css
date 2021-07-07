@@ -1,0 +1,22 @@
+.task-item {
+  display: flex;
+  width: 100%;
+  background-color: white;
+}
+
+.task-item .taskContent {
+  width: 70%;
+}
+
+.task-item .timerContent {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 30%;
+}
+.task-item .timerContent .btn_Start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 3%;
+}

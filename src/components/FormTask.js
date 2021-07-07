@@ -3,15 +3,20 @@ import "./FormTask.css";
 export default class FormTask extends Component {
   constructor(props) {
     super(props);
-    this.state = { timer: { h: 0, m: 0, s: 0 }, seconds: 0 };
+    this.state = { timer: { h: 0, m: 0, s: 0, seconds: 0 } };
 
     this.FormRef = React.createRef();
-    this.props.setStateTodo({ refForm: this.FormRef });
+    this.props.setStateTodo(
+      this.props.stateOfTodo.tabTask,
+      this.props.stateOfTodo.tabTaskActive,
+      this.FormRef
+    );
     this.FormtextAreaRef1 = React.createRef();
     this.FormtextAreaRef2 = React.createRef();
     this.intervalCode = null;
     this.startTimer = this.startTimer.bind(this);
     this.countSeconds = this.countSeconds.bind(this);
+    this.clearTextarea = this.clearTextarea.bind(this);
   }
   countSeconds() {
     let secondsCount = this.state.seconds + 1;
@@ -31,11 +36,12 @@ export default class FormTask extends Component {
       h: hours,
       m: minutes,
       s: seconds,
+      seconds: secs,
     };
     return obj;
   }
   componentDidMount() {
-    let seconds = this.secondsToTime(this.state.seconds);
+    let seconds = this.secondsToTime(this.state.timer.seconds);
     this.setState({ timer: seconds });
   }
   startTimer() {
@@ -60,15 +66,20 @@ export default class FormTask extends Component {
         });
       }
   }
-  updateSateOfTodo() {
+  clearTextarea() {
+    this.FormtextAreaRef1.current.value = "";
+    this.FormtextAreaRef2.current.value = "";
+  }
+  updateSateOfTodo = () => {
     let indexOfTabActiveDay = this.props.stateOfTodo.tabWeek.indexOf(
       this.props.stateOfTodo.activeTask
     );
 
     let newTabTask = this.props.stateOfTodo.tabTask;
-    console.log(this.props.stateOfTodo.tabTask);
+    console.log(newTabTask);
 
     let tabTaskActiveDay = newTabTask[indexOfTabActiveDay];
+    console.log(tabTaskActiveDay);
     tabTaskActiveDay.length > 0
       ? (newTabTask[indexOfTabActiveDay] = [
           ...tabTaskActiveDay,
@@ -88,8 +99,12 @@ export default class FormTask extends Component {
           },
         ]);
 
-    this.props.setStateTodo(newTabTask);
-  }
+    this.props.setStateTodo(
+      newTabTask,
+      tabTaskActiveDay,
+      this.props.stateOfTodo.refForm
+    );
+  };
 
   //   componentWillUnmount() {
   //     console.log(this.stateOfTodo);
@@ -138,6 +153,10 @@ export default class FormTask extends Component {
                       this.state.timer.m < 10
                         ? `0${this.state.timer.m}`
                         : this.state.timer.m
+                    }:${
+                      this.state.timer.s < 10
+                        ? `0${this.state.timer.s}`
+                        : this.state.timer.s
                     }`}
                   />
                 </div>
@@ -147,23 +166,41 @@ export default class FormTask extends Component {
               <div>
                 {" "}
                 <button
-                  onClick={() => {
-                    this.startTimer();
+                  onClick={(e) => {
+                    // e.preventDefault();
+                    // this.startTimer();
                     this.FormRef.current.setAttribute(
                       "style",
                       "visibility:hidden"
                     );
+
                     this.updateSateOfTodo();
+                    // setTimeout(
+                    //   function () {
+                    //     this.clearTextarea();
+                    //   }.bind(this),
+                    //   500
+                    // );
+                    this.clearTextarea();
                   }}
                 >
                   Submit
                 </button>{" "}
                 <button
-                  onClick={() => {
+                  onClick={(e) => {
                     this.FormRef.current.setAttribute(
                       "style",
                       "visibility:hidden"
                     );
+                    e.preventDefault();
+
+                    // setTimeout(
+                    //   function () {
+                    //     this.clearTextarea();
+                    //   }.bind(this),
+                    //   500
+                    // );
+                    this.clearTextarea();
                   }}
                 >
                   Cancel
