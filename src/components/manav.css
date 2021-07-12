@@ -1,7 +1,7 @@
 nav {
   display: flex;
   justify-content: space-around;
-  background-color: #f47918;
+  background-color: #f47718b4;
   height: 50px;
 }
 
@@ -40,7 +40,7 @@ nav .form-line {
 }
 
 nav .form-line button {
-  background-color: #f47918;
+  background-color: #f4771893;
   color: white;
   border: 1px solid white;
 }

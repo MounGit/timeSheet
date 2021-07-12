@@ -13,7 +13,7 @@ function App() {
         <Nav />
 
         <Route path="/Home" exact component={Home} />
-        <Route path="/TodoList" exact component={TodoList} />
+        <Route path="/TodoList" exact component={TodoList}/>
       </Router>
 
       {/* <Section_1 /> */}

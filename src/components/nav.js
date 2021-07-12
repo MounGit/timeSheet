@@ -8,6 +8,7 @@ function Nav() {
   const inputTextRef = useRef();
   const [name, setName] = useState("");
   const [dataIsOk, setData] = useState(false);
+
   return (
     <div>
       <nav id="maNav">
@@ -17,6 +18,7 @@ function Nav() {
             Home
           </a>
           <a href="/TodoList">Timesheet</a>
+          <a href="https://bit.ly/3xvOqkh" target="_blank">Gold</a>
         </div>
 
         {dataIsOk ? (
@@ -25,6 +27,7 @@ function Nav() {
           <form>
             <div className="form-line">
               <input
+                id="utilisateurNom"
                 ref={inputTextRef}
                 placeholder="Nom utilisateur"
                 type="text"

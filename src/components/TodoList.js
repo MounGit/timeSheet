@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./TodoList.css";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faStopwatch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FormTask from "./FormTask";
 import Container_task from "./Container_task";
@@ -50,77 +51,79 @@ export default class TodoList extends Component {
   }
   render() {
     return (
-      <div className="TodoList">
-        <div className="newTask">
-          <button
-            onClick={
-              () =>
-                (this.refForm.current.FormRef.current.style =
-                  "transition:0.2s; visibility: visible")
+      <div id="cacao">
+        <div className="TodoList">
+          <div className="newTask">
+            <button
+              onClick={
+                () =>
+                  (this.refForm.current.FormRef.current.style =
+                    "transition:0.2s; visibility: visible")
 
-              //   console.log(this.refForm.current.FormRef.current.style)
-            }
-          >
-            <FontAwesomeIcon className="icon" icon={faPlus} />
-          </button>
-          <p>New Entry</p>
-        </div>
-
-        <div className="contentTask">
-          <div className="containerBtn">
-            {this.state.tabWeek.map((str, index) => {
-              let btn = (
-                <button
-                  indexBtn={index}
-                  className=""
-                  refBis={this.TabBtnRef[index]}
-                  ref={this.TabBtnRef[index]}
-                  key={str}
-                  onClick={(e) => {
-                    this.setState({
-                      activeTask: str,
-                      tabTaskActive: this.state.tabTask[index],
-                    });
-                    e.target.classList.add("active");
-                    this.tabBtns.forEach((elt) => {
-                      if (elt.props.refBis.current != e.target) {
-                        elt.props.refBis.current.classList.remove("active");
-                      }
-                    });
-                  }}
-                >
-                  {str}
-                  <span key={str} id={str}>
-                    0:00
-                  </span>
-                </button>
-              );
-              this.tabBtns.push(btn);
-              return btn;
-            })}
+                //   console.log(this.refForm.current.FormRef.current.style)
+              }
+            >
+              <FontAwesomeIcon className="icon" icon={faPlus} />
+            </button>
+            <p>New Entry</p>
           </div>
-          <div className="container_taskDaily">
-            <Container_task
-              updateTimer={this.updateTimer}
-              stateTodo={this.state}
-            />
-            <div className="total">
-              <p>Total:</p> <span>0:00</span>
+
+          <div className="contentTask">
+            <div className="containerBtn">
+              {this.state.tabWeek.map((str, index) => {
+                let btn = (
+                  <button
+                    indexBtn={index}
+                    className=""
+                    refBis={this.TabBtnRef[index]}
+                    ref={this.TabBtnRef[index]}
+                    key={str}
+                    onClick={(e) => {
+                      this.setState({
+                        activeTask: str,
+                        tabTaskActive: this.state.tabTask[index],
+                      });
+                      e.target.classList.add("active");
+                      this.tabBtns.forEach((elt) => {
+                        if (elt.props.refBis.current != e.target) {
+                          elt.props.refBis.current.classList.remove("active");
+                        }
+                      });
+                    }}
+                  >
+                    {str}
+                    <span key={str} id={str}>
+                      0:00
+                    </span>
+                  </button>
+                );
+                this.tabBtns.push(btn);
+                return btn;
+              })}
+            </div>
+            <div className="container_taskDaily">
+              <Container_task
+                updateTimer={this.updateTimer}
+                stateTodo={this.state}
+              />
+              <div className="total">
+                <p>Total:</p> <span>0:00</span>
+              </div>
             </div>
           </div>
+          <FormTask
+            ref={this.refForm}
+            setStateTodo={(tabTaskNew, tabTaskActiveNew, refFormNew) =>
+              this.setState({
+                tabTask: tabTaskNew,
+                tabTaskActive: tabTaskActiveNew,
+                refForm: refFormNew,
+              })
+            }
+            stateOfTodo={this.state}
+          />
+          {console.log(this.state)}
         </div>
-        <FormTask
-          ref={this.refForm}
-          setStateTodo={(tabTaskNew, tabTaskActiveNew, refFormNew) =>
-            this.setState({
-              tabTask: tabTaskNew,
-              tabTaskActive: tabTaskActiveNew,
-              refForm: refFormNew,
-            })
-          }
-          stateOfTodo={this.state}
-        />
-        {console.log(this.state)}
       </div>
     );
   }

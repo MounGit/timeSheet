@@ -4,7 +4,6 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Calendar } from "react-calendar";
 import { Component } from "react";
 
 export default class section_1 extends Component {
@@ -43,9 +42,7 @@ export default class section_1 extends Component {
     } ${this.maDate.getDay()}-${this.maDate.getMonth()}-${this.maDate.getFullYear()}`;
   }
 
-  monCalendrier() {
-    <Calendar />;
-  }
+
 
   render() {
     return (

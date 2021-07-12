@@ -32,10 +32,10 @@ function Home() {
             création, le temps de la méditation, le temps de la régression, le
             temps de la solitude.
           </p>
-          <p id="auteur">Jean-Louis Servan-Schreiber , L'Art du Temps (1983)</p>
+          <h6 id="auteur">Jean-Louis Servan-Schreiber , L'Art du Temps (1983)</h6>
         </div>
       </section>
-      <section id="light"></section>
+
     </div>
   );
 }

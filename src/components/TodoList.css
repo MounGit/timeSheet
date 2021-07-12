@@ -1,6 +1,12 @@
 .TodoList {
   display: flex;
 }
+#cacao{
+  margin-top: 60px;
+  background-color: rgba(244, 165, 96, 0.459);
+  width: 98%;
+  margin-left: 1%;
+}
 
 .TodoList .newTask {
   display: flex;
@@ -14,6 +20,7 @@
   border: none;
   border-radius: 5px;
   padding: 15%;
+  margin-top: 100px;
 }
 
 .TodoList .icon {
@@ -23,6 +30,7 @@
 .TodoList .containerBtn {
   display: flex;
   width: 90vw;
+  
 }
 .TodoList .containerBtn button {
   display: flex;
@@ -43,6 +51,7 @@
 .TodoList .contentTask {
   display: flex;
   flex-direction: column;
+  margin-top: 100px;
 }
 
 .TodoList .total {
