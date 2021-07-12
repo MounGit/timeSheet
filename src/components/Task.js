@@ -8,6 +8,7 @@ export default class Task extends Component {
     console.log(this.props.stateTodo.tabTaskActive);
     this.spanTimerRef = React.createRef();
     this.spanRef = React.createRef();
+    this.referenceTask = React.createRef();
     this.state = {
       intervalCode: 0,
       timer:
@@ -17,6 +18,10 @@ export default class Task extends Component {
     //   intervalCode: 0,
     //   timer: { h: 0, mm: 0, s: 0, seconds: 0 },
     // };
+    this.props.setStateTodo(
+      this.props.IndexOfTask,
+      this.props.stateTodo.submit
+    );
     this.startTimer = this.startTimer.bind(this);
     this.countSeconds = this.countSeconds.bind(this);
     this.intervalCodeBis = 0;
@@ -82,7 +87,7 @@ export default class Task extends Component {
   }
   render() {
     return (
-      <div className="task-item">
+      <div ref={this.referenceTask} className="task-item">
         <div className="taskContent">
           <h4>{this.props.taskObj.titre}</h4>
           <p>{this.props.taskObj.description}</p>
@@ -113,6 +118,7 @@ export default class Task extends Component {
           <button
             onClick={(e) => {
               e.preventDefault();
+              this.props.setStateTodo(this.props.IndexOfTask, false);
               let tabTextarea = Array.from(
                 this.props.stateTodo.tabTaskActive[
                   this.props.IndexOfTask
@@ -131,9 +137,9 @@ export default class Task extends Component {
                   this.props.IndexOfTask
                 ].description;
               inputNode.value = this.spanTimerRef.current.textContent;
-              console.log(this.props.stateTodo.tabTaskActive[
-                this.props.IndexOfTask
-              ]);
+              console.log(
+                this.props.stateTodo.tabTaskActive[this.props.IndexOfTask]
+              );
               this.props.stateTodo.tabTaskActive[
                 this.props.IndexOfTask
               ].refTask.setAttribute("style", "visibility:visible");

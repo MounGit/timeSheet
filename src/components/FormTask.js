@@ -3,7 +3,7 @@ import "./FormTask.css";
 export default class FormTask extends Component {
   constructor(props) {
     super(props);
-    this.state = { timer: { h: 0, m: 0, s: 0, seconds: 0 } };
+    this.state = { timer: { h: 0, m: 0, s: 0, seconds: 0 }, focusTask: null };
 
     this.FormRef = React.createRef();
     this.props.setStateTodo(
@@ -13,6 +13,7 @@ export default class FormTask extends Component {
     );
     this.FormtextAreaRef1 = React.createRef();
     this.FormtextAreaRef2 = React.createRef();
+    this.btnRef = React.createRef();
     this.intervalCode = null;
     this.startTimer = this.startTimer.bind(this);
     this.countSeconds = this.countSeconds.bind(this);
@@ -41,17 +42,17 @@ export default class FormTask extends Component {
     };
     return obj;
   }
+
+  updateDataTabTask() {
+    let newTabTaskActive = this.props.stateOfTodo.tabTaskActive;
+  }
   componentDidMount() {
     let seconds = this.secondsToTime(this.state.timer.seconds);
     this.setState({ timer: seconds });
-
   }
 
-  componentWillUnmount(){
-                        this.FormRef.current.setAttribute(
-                      "style",
-                      "visibility:visible"
-                    );
+  componentWillUnmount() {
+    this.FormRef.current.setAttribute("style", "visibility:visible");
   }
   startTimer() {
     this.intervalCode = setInterval(this.countSeconds, 1000);
@@ -79,7 +80,7 @@ export default class FormTask extends Component {
     //     newTabTask[indexOfTabActiveDay] = tabActiveDay;
     //     console.log(newTabTask[indexOfTabActiveDay]);
     //     this.props.setStateTodo({
-    //       tabTask: newTabTask, tabTaskActive: tabActiveDay, 
+    //       tabTask: newTabTask, tabTaskActive: tabActiveDay,
     //       refForm: this.props.stateOfTodo.refForm
     //     });
     //   }
@@ -185,9 +186,26 @@ export default class FormTask extends Component {
               <div>
                 {" "}
                 <button
+                  ref={this.btnRef}
                   onClick={(e) => {
                     e.preventDefault();
                     // this.startTimer();
+                    if (this.btnRef.current.textContent === "update") {
+                      // console.log(this.props.stateOfTodo.focusTask);
+
+                      let titleNode =
+                        this.props.stateOfTodo.focusTask.current.querySelector(
+                          "h4"
+                        );
+                      let paraphNode =
+                        this.props.stateOfTodo.focusTask.current.querySelector(
+                          "p"
+                        );
+                      titleNode.textContent =
+                        this.FormtextAreaRef1.current.value;
+                      paraphNode.textContent =
+                        this.FormtextAreaRef2.current.value;
+                    }
                     this.FormRef.current.setAttribute(
                       "style",
                       "visibility:hidden"
@@ -203,7 +221,7 @@ export default class FormTask extends Component {
                     this.clearTextarea();
                   }}
                 >
-                  Submit
+                  {this.props.stateOfTodo.submit === true ? "submit" : "update"}
                 </button>{" "}
                 <button
                   onClick={(e) => {
@@ -225,9 +243,14 @@ export default class FormTask extends Component {
                   Cancel
                 </button>
               </div>{" "}
-              <button onClick={(e) => {
-                e.preventDefault();
-                this.deleteTask()}}>Delete</button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.deleteTask();
+                }}
+              >
+                Delete
+              </button>
             </div>
             {/* {console.log(this.props.stateOfTodo.tabTask)} */}
           </div>

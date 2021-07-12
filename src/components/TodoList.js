@@ -35,6 +35,8 @@ export default class TodoList extends Component {
     tabWeek: ["M", "T", "W", "Th", "F", "S", "Su"],
     activeTask: "M",
     refForm: this.refForm,
+    submit: true,
+    indexOfFocusTask: null,
   };
   //   changeTabTask(tabTaskActiveNew) {
   //     this.setState({ tabTaskActive: tabTaskActiveNew });
@@ -103,6 +105,9 @@ export default class TodoList extends Component {
             <Container_task
               updateTimer={this.updateTimer}
               stateTodo={this.state}
+              setStateTodo={(index, isSubmit) =>
+                this.setState({ indexOfFocusTask: index, submit: isSubmit })
+              }
             />
             <div className="total">
               <p>Total:</p> <span>0:00</span>
@@ -121,6 +126,7 @@ export default class TodoList extends Component {
           stateOfTodo={this.state}
         />
         {console.log(this.state)}
+        {console.log("ref", this.refForm.current)}
       </div>
     );
   }

@@ -14,6 +14,7 @@ export default class Container_task extends Component {
                 IndexOfTask={index}
                 stateTodo={this.props.stateTodo}
                 taskObj={taskObjBis}
+                setStateTodo={this.props.setStateTodo}
               />
             </div>
           );
