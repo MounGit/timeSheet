@@ -44,14 +44,10 @@ export default class FormTask extends Component {
   componentDidMount() {
     let seconds = this.secondsToTime(this.state.timer.seconds);
     this.setState({ timer: seconds });
-
   }
 
-  componentWillUnmount(){
-                        this.FormRef.current.setAttribute(
-                      "style",
-                      "visibility:visible"
-                    );
+  componentWillUnmount() {
+    this.FormRef.current.setAttribute("style", "visibility:visible");
   }
   startTimer() {
     this.intervalCode = setInterval(this.countSeconds, 1000);
@@ -79,7 +75,7 @@ export default class FormTask extends Component {
     //     newTabTask[indexOfTabActiveDay] = tabActiveDay;
     //     console.log(newTabTask[indexOfTabActiveDay]);
     //     this.props.setStateTodo({
-    //       tabTask: newTabTask, tabTaskActive: tabActiveDay, 
+    //       tabTask: newTabTask, tabTaskActive: tabActiveDay,
     //       refForm: this.props.stateOfTodo.refForm
     //     });
     //   }
@@ -225,9 +221,14 @@ export default class FormTask extends Component {
                   Cancel
                 </button>
               </div>{" "}
-              <button onClick={(e) => {
-                e.preventDefault();
-                this.deleteTask()}}>Delete</button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.deleteTask();
+                }}
+              >
+                Delete
+              </button>
             </div>
             {/* {console.log(this.props.stateOfTodo.tabTask)} */}
           </div>
