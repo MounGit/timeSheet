@@ -8,7 +8,6 @@ export default class Task extends Component {
     console.log(this.props.stateTodo.tabTaskActive);
     this.spanTimerRef = React.createRef();
     this.spanRef = React.createRef();
-    this.referenceTask = React.createRef();
     this.state = {
       intervalCode: 0,
       timer:
@@ -18,23 +17,6 @@ export default class Task extends Component {
     //   intervalCode: 0,
     //   timer: { h: 0, mm: 0, s: 0, seconds: 0 },
     // };
-
-    //Assignation de la référence
-    let newTabTask = this.props.stateTodo.tabTask;
-    let indexOfActiveDay = this.props.stateTodo.tabWeek.indexOf(
-      this.props.stateTodo.activeTask
-    );
-    if (newTabTask[indexOfActiveDay].length > 0) {
-      newTabTask[indexOfActiveDay][this.props.IndexOfTask].referenceTask =
-        this.referenceTask;
-    }
-    let newTabTaskActive = newTabTask[indexOfActiveDay];
-
-    this.props.changeTimer(newTabTask, newTabTaskActive);
-    this.props.setStateTodo(
-      this.props.IndexOfTask,
-      this.props.stateTodo.submit
-    );
     this.startTimer = this.startTimer.bind(this);
     this.countSeconds = this.countSeconds.bind(this);
     this.intervalCodeBis = 0;
@@ -70,7 +52,6 @@ export default class Task extends Component {
     let seconds = this.secondsToTime(this.state.timer.seconds);
     // console.log(`didmount:${seconds}`);
     this.setState({ timer: seconds });
-    this.props.updateTimer(seconds, this.props.stateTodo);
   }
 
   componentWillUnmount() {
@@ -101,7 +82,7 @@ export default class Task extends Component {
   }
   render() {
     return (
-      <div ref={this.referenceTask} className="task-item">
+      <div className="task-item">
         <div className="taskContent">
           <h4>{this.props.taskObj.titre}</h4>
           <p>{this.props.taskObj.description}</p>
@@ -132,25 +113,6 @@ export default class Task extends Component {
           <button
             onClick={(e) => {
               e.preventDefault();
-              this.props.setStateTodo(this.props.IndexOfTask, false);
-
-              this.props.changeStatusFormDisplay(true);
-              let newTabTask = this.props.stateTodo.tabTask;
-              let indexOfACtiveDay = this.props.stateTodo.tabWeek.indexOf(
-                this.props.stateTodo.activeTask
-              );
-              let timerOfForm =
-                newTabTask[
-                  this.props.stateTodo.tabWeek.indexOf(
-                    this.props.stateTodo.activeTask
-                  )
-                ][this.props.IndexOfTask].timerForm;
-              console.log(timerOfForm, this.state.timer);
-              newTabTask[indexOfACtiveDay][this.props.IndexOfTask].timerForm =
-                this.state.timer;
-              let newTabTaskActive = newTabTask[indexOfACtiveDay];
-              console.log(newTabTaskActive);
-              this.props.changeTimer(newTabTask, newTabTaskActive);
               let tabTextarea = Array.from(
                 this.props.stateTodo.tabTaskActive[
                   this.props.IndexOfTask
@@ -169,12 +131,13 @@ export default class Task extends Component {
                   this.props.IndexOfTask
                 ].description;
               inputNode.value = this.spanTimerRef.current.textContent;
-              console.log(inputNode.value);
+              console.log(this.props.stateTodo.tabTaskActive[
+                this.props.IndexOfTask
+              ]);
               this.props.stateTodo.tabTaskActive[
                 this.props.IndexOfTask
               ].refTask.setAttribute("style", "visibility:visible");
               this.stopBtnTimer();
-              console.log("subit", this.props.stateTodo.submit);
             }}
           >
             <FontAwesomeIcon className="icon" icon={faPencilAlt} />
